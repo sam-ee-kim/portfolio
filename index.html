@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김찬솔 | 포트폴리오</title>
+  <style>
+    /* Reset & Base Setup */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0b1120; /* Deep Midnight Blue */
+      color: #94a3b8; /* Muted slate */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 48px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    /* Header */
+    header {
+      padding-bottom: 32px;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    blockquote {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+      font-style: normal;
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .contact-info a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .contact-info a:hover {
+      color: #e2e8f0;
+      text-decoration: underline;
+    }
+
+    /* Section Styles */
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    /* Cards */
+    .card {
+      background-color: #111c30;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    /* Meta List */
+    .meta-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1a253a;
+    }
+
+    .meta-item strong {
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    /* Bullet List */
+    ul.details {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.details li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    ul.details li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #475569;
+    }
+
+    .empty-state {
+      font-size: 0.9rem;
+      color: #475569;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>김찬솔</h1>
+      <blockquote>현재에 안주하지 않고 계속 개선하는 개발자</blockquote>
+      <div class="contact-info">
+        이메일: <a href="mailto:anth6838@gmail.com">anth6838@gmail.com</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>학력</h2>
+      <div class="card">
+        <div class="card-title">유한대학교</div>
+        <div class="card-subtitle">2022.03 ~ 2027.02</div>
+        <p style="font-size: 0.9rem; color: #cbd5e1;">컴퓨터공학과 게임콘텐츠전공</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>경력</h2>
+      <div class="card">
+        <p class="empty-state">등록된 경력 사항이 없습니다.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>프로젝트 경험</h2>
+      <div class="card">
+        <div class="card-title">로그라이트 게임 개발</div>
+        <div class="card-subtitle">2026.03 ~ 2026.07</div>
+        
+        <div class="meta-list">
+          <div class="meta-item"><strong>구분:</strong> 기능 개발</div>
+          <div class="meta-item"><strong>역할:</strong> 개발담당</div>
+          <div class="meta-item"><strong>사용 기술:</strong> Unity6</div>
+        </div>
+
+        <div style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 6px;">한 일 & 성과</div>
+        <ul class="details">
+          <li>몬스터 FSM 개발 및 모듈화로 생산성 확보</li>
+          <li>하드코딩된 몬스터 스탯을 JSON 파일로 데이터화</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
