@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트 기획서 - [명조: 워더링웨이브] 숏폼 바이럴 프로모션</title>
+  <style>
+    :root {
+      --primary-color: #1a365d;
+      --secondary-color: #2b6cb0;
+      --table-header: #f1f5f9;
+      --border-color: #cbd5e1;
+      --text-main: #1e293b;
+      --text-sub: #475569;
+      --bg-light: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #e2e8f0;
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 20px;
+      font-size: 13.5px;
+    }
+
+    .paper {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 60px 70px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid #cbd5e1;
+    }
+
+    /* 문서 상단 헤더 & 결재선 */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 25px;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 20px;
+    }
+
+    .doc-title-area {
+      flex: 1;
+    }
+
+    .doc-category {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--secondary-color);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .doc-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-color);
+      letter-spacing: -0.5px;
+    }
+
+    /* 결재란 테이블 */
+    .approval-table {
+      border-collapse: collapse;
+      font-size: 11px;
+      text-align: center;
+      margin-left: 20px;
+    }
+
+    .approval-table th, .approval-table td {
+      border: 1px solid #94a3b8;
+      padding: 4px 10px;
+    }
+
+    .approval-table th {
+      background-color: var(--table-header);
+      font-weight: 600;
+      width: 65px;
+    }
+
+    .approval-table td {
+      height: 48px;
+      vertical-align: middle;
+      color: var(--text-sub);
+    }
+
+    .approval-side-title {
+      writing-mode: vertical-rl;
+      padding: 4px 4px !important;
+      background-color: var(--table-header);
+      font-weight: 600;
+      width: 20px !important;
+    }
+
+    /* 기본 메타 테이블 */
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 12.5px;
+    }
+
+    .meta-table th, .meta-table td {
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+    }
+
+    .meta-table th {
+      width: 15%;
+      background-color: var(--table-header);
+      font-weight: 600;
+      color: var(--primary-color);
+      text-align: left;
+    }
+
+    .meta-table td {
+      width: 35%;
+    }
+
+    /* 본문 섹션 */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-color);
+      border-left: 4px solid var(--primary-color);
+      padding-left: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .content-box {
+      background-color: var(--bg-light);
+      border: 1px solid var(--border-color);
+      padding: 14px 18px;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin: 4px 0;
+    }
+
+    li {
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .sub-bullet {
+      list-style-type: square;
+      padding-left: 18px;
+      margin-top: 4px;
+      color: var(--text-sub);
+      font-size: 13px;
+    }
+
+    /* 본문 표준 테이블 */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin: 10px 0;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background-color: var(--table-header);
+      color: var(--primary-color);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .data-table td.center {
+      text-align: center;
+    }
+
+    /* 프로세스 플로우 */
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 10px 0;
+    }
+
+    .flow-card {
+      border: 1px solid var(--border-color);
+      background: #fff;
+      padding: 12px 14px;
+      position: relative;
+    }
+
+    .flow-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      background-color: var(--primary-color);
+      padding: 2px 6px;
+      margin-bottom: 6px;
+    }
+
+    .flow-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .flow-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    /* 이미지 플레이스홀더 */
+    .img-placeholder {
+      border: 1px dashed #94a3b8;
+      background: #fff;
+      padding: 16px;
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    /* 인쇄 최적화 */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .paper {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper">
+    <!-- 헤더 & 결재선 -->
+    <div class="header-container">
+      <div class="doc-title-area">
+        <div class="doc-category">MARKETING PROMOTION PLAN</div>
+        <h1 class="doc-title">이벤트 기획서</h1>
+      </div>
+      <table class="approval-table">
+        <tr>
+          <th rowspan="2" class="approval-side-title">결재</th>
+          <th>담당</th>
+          <th>검토</th>
+          <th>승인</th>
+        </tr>
+        <tr>
+          <td>김찬솔</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 문서 메타 정보 -->
+    <table class="meta-table">
+      <tr>
+        <th>문서 번호</th>
+        <td>MKT-2026-09-01</td>
+        <th>기안 일자</th>
+        <td>2026. 09. 17</td>
+      </tr>
+      <tr>
+        <th>기안 부서</th>
+        <td>게임마케팅본부 기획팀</td>
+        <th>프로젝트명</th>
+        <td>[명조] 숏폼 바이럴 프로모션</td>
+      </tr>
+    </table>
+
+    <!-- 1. 이벤트 개요 -->
+    <div class="section">
+      <h2 class="section-title">1. 이벤트 개요</h2>
+      <table class="data-table">
+        <tr>
+          <th style="width: 20%;">이벤트명</th>
+          <td colspan="3"><strong>[명조: 워더링웨이브] 숏폼 참가 이벤트!</strong></td>
+        </tr>
+        <tr>
+          <th>대상 IP / 버전</th>
+          <td colspan="3">최근 라이브 업데이트 버전 기준</td>
+        </tr>
+        <tr>
+          <th rowspan="3">진행 기간</th>
+          <td style="width: 25%;"><strong>게시 기간</strong></td>
+          <td colspan="2">2026. 10. 08 ~ 2026. 11. 08 (31일간)</td>
+        </tr>
+        <tr>
+          <td><strong>집계 기간</strong></td>
+          <td colspan="2">2026. 11. 09 ~ 2026. 11. 29 (21일간)</td>
+        </tr>
+        <tr>
+          <td><strong>결과 발표일</strong></td>
+          <td colspan="2">2026. 12. 01 (화)</td>
+        </tr>
+        <tr>
+          <th>목표 플랫폼</th>
+          <td colspan="3">유튜브 쇼츠(YouTube Shorts), 틱톡(TikTok), 인스타그램 릴스(Instagram Reels)</td>
+        </tr>
+        <tr>
+          <th>핵심 타깃</th>
+          <td colspan="3">
+            • <strong>기존 유저:</strong> 인게임 리텐션 증대 및 DAU 활성화<br>
+            • <strong>잠재/이탈 유저:</strong> 알고리즘 노출을 통한 신규 유입 및 복귀 전환
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 2. 기획 배경 및 목적 -->
+    <div class="section">
+      <h2 class="section-title">2. 기획 배경 및 목적</h2>
+      <div class="content-box">
+        <ul>
+          <li>
+            <strong>기획 배경:</strong> 소비 호흡이 짧은 숏폼 트렌드 부합 및 유저 생성 콘텐츠(UGC) 기반 자연 바이럴 유도
+            <ul class="sub-bullet">
+              <li>숏폼 브랜드 소비 양상은 <em>트렌드코리아 2026 픽셀라이프</em> 인사이트와 밀접하게 부합함.</li>
+              <li>콘텐츠 밀도는 줄어들었으나 절대적 유통 물량이 증가하여 접근성이 극대화되며, 게임의 시각적 인상을 단시간 내 각인 가능.</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="img-placeholder">
+          [첨부 데이터: 픽셀라이프 인사이트 및 숏폼 도달 지표 분석 자료 (Pasted image 20260917154903.png)]
+        </div>
+      </div>
+      <div class="content-box" style="margin-top: 8px;">
+        <ul>
+          <li>
+            <strong>핵심 목적:</strong>
+            <ul class="sub-bullet">
+              <li>숏폼 플랫폼 내 게임 관련 공식/비공식 해시태그 누적 총합 조회수 <strong>1,000만 뷰</strong> 달성</li>
+              <li>프로모션 연계 인게임 우편 보상을 통한 이벤트 기간 내 <strong>DAU 5% 상승</strong> 견인</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3. 트랙별 상세 설계 -->
+    <div class="section">
+      <h2 class="section-title">3. 트랙별 상세 설계</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">구분</th>
+            <th style="width: 40%;">트랙 A: 일반 유저 전형</th>
+            <th style="width: 40%;">트랙 B: 크리에이터 전형</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>목적 및 포지셔닝</th>
+            <td>숏폼 클립 대량 양산 및 인게임 DAU 견인</td>
+            <td>브랜딩 퀄리티 확보 및 알고리즘 대외 확산</td>
+          </tr>
+          <tr>
+            <th>콘셉트</th>
+            <td><strong>자유 주제</strong> (참여 장벽 최소화)</td>
+            <td><strong>시즌 테마 한정</strong> (예: 가을 테마, 캐릭터 헌정)</td>
+          </tr>
+          <tr>
+            <th>참여 규격</th>
+            <td>20초 이상 인게임 플레이 녹화<br>(가챠, 보스전, 패링, 유머 클립 등)</td>
+            <td>30~60초 이내 2차 창작 영상<br>(애니메이션, 코스프레, 밈, BGM 리믹스 등)</td>
+          </tr>
+          <tr>
+            <th>필수 조건</th>
+            <td>필수 해시태그 + 영상 내 UID/워터마크 노출</td>
+            <td>필수 해시태그 + 창작 가이드라인 준수</td>
+          </tr>
+          <tr>
+            <th>보상 설계</th>
+            <td>참가자 전원 기본 재화(1뽑 등) 지급</td>
+            <td>고액 상금 및 공식 채널 피처링 특전</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. 참여 프로세스 및 인게임 연동 파이프라인 -->
+    <div class="section">
+      <h2 class="section-title">4. 참여 프로세스 및 인게임 연동 파이프라인</h2>
+      <div class="flow-container">
+        <div class="flow-card">
+          <span class="flow-badge">STEP 1</span>
+          <div class="flow-title">제작 & 업로드</div>
+          <div class="flow-desc">트랙별 규격에 맞춰 영상 제작 후 필수 해시태그와 함께 플랫폼에 게시</div>
+        </div>
+        <div class="flow-card">
+          <span class="flow-badge">STEP 2</span>
+          <div class="flow-title">참여 인증</div>
+          <div class="flow-desc">공식 이벤트 웹페이지 접속 후 [영상 URL + 본인 UID] 제출 및 접수</div>
+        </div>
+        <div class="flow-card">
+          <span class="flow-badge">STEP 3</span>
+          <div class="flow-title">리텐션 트리거</div>
+          <div class="flow-desc">접수 완료 즉시 인게임 우편함으로 참가 보상 자동 발송 (즉시 접속 유도)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 심사 기준 및 시상 테이블 -->
+    <div class="section">
+      <h2 class="section-title">5. 심사 기준 및 시상 테이블</h2>
+      <div style="font-size: 12px; margin-bottom: 6px; color: var(--text-sub);">
+        ※ 심사 배점: 정량 지표 60% (조회수, 좋아요, 공유 수) + 정성 지표 40% (IP 이해도, 완성도, 반응률)
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>부문</th>
+            <th>등급</th>
+            <th>선정 인원</th>
+            <th>보상 내역 (현금/현물)</th>
+            <th>인게임 보상</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2" class="center"><strong>크리에이터</strong></td>
+            <td class="center">대상</td>
+            <td class="center">1명</td>
+            <td>상금 200만 원</td>
+            <td>특별 칭호 + 별의 소리 10,000개</td>
+            <td>공식 SNS 게재</td>
+          </tr>
+          <tr>
+            <td class="center">최우수상</td>
+            <td class="center">3명</td>
+            <td>상금 50만 원</td>
+            <td>별의 소리 5,000개</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td rowspan="2" class="center"><strong>일반 유저</strong></td>
+            <td class="center">럭키 드로우</td>
+            <td class="center">50명</td>
+            <td>구글 기프트카드 3만 원권</td>
+            <td>-</td>
+            <td>일정 조회수 달성 추첨</td>
+          </tr>
+          <tr>
+            <td class="center">참가상</td>
+            <td class="center">전원</td>
+            <td>-</td>
+            <td>별의 소리 160개 (1회 뽑기)</td>
+            <td>UID 우편 즉시 지급</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6. IP 및 리스크 관리 가이드 -->
+    <div class="section">
+      <h2 class="section-title">6. IP 및 리스크 관리 가이드</h2>
+      <table class="data-table">
+        <tr>
+          <th style="width: 25%;">타 IP 침해 방지</th>
+          <td>타 게임 및 외부 애니메이션 저작물 요소 혼합 적발 시 사전 고지 없이 즉각 실격 처리</td>
+        </tr>
+        <tr>
+          <th>생성형 AI 정책</th>
+          <td>단순 텍스트 프롬프트 기반 자동 생성물 배제 (순수 유저 창작 및 플레이 녹화물 보호 원칙)</td>
+        </tr>
+        <tr>
+          <th>어뷰징 대응</th>
+          <td>매크로 및 조회수 구매 봇 필터링 적용 (평균 시청 지속시간 및 인터랙션 비율 역추적)</td>
+        </tr>
+        <tr>
+          <th>2차 저작물 권리</th>
+          <td>제출된 출품작의 마케팅 2차 가공 및 명조 공식 채널 재배포 활용 동의 조항 필수 징구</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 7. 운영 및 바이럴 타임라인 -->
+    <div class="section">
+      <h2 class="section-title">7. 운영 및 바이럴 타임라인</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">시점</th>
+            <th style="width: 35%;">주요 업무</th>
+            <th style="width: 45%;">세부 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>D-7</strong></td>
+            <td>사전 가이드 배포</td>
+            <td>공식 숏폼 채널을 통해 가이드 템플릿(예시 쇼츠) 선공개</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>D-Day ~ D+31</strong></td>
+            <td>챌린지 접수 오픈</td>
+            <td>인게임 배너/공지 연동 및 접수 웹페이지 실시간 트래픽 대응</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>진행 중 (주간 단위)</strong></td>
+            <td>중간 바이럴 확산</td>
+            <td>매주 '금주의 명장면' 쇼츠 컴필레이션 재가공 배포</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>D+54</strong></td>
+            <td>최종 결과 발표</td>
+            <td>공식 라운지 공지 게재 및 수상작 하이라이트 영상 공식 업로드</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 8. 목표 KPI 및 예산 -->
+    <div class="section">
+      <h2 class="section-title">8. 목표 KPI 및 예산</h2>
+      <div class="content-box">
+        <ul>
+          <li><strong>목표 지표 (KPI):</strong>
+            <ul class="sub-bullet">
+              <li>총 출품작 수: <strong>3,000건 이상</strong> (일반 전형 2,800건 + 크리에이터 전형 200건)</li>
+              <li>챌린지 누적 해시태그 조회수: <strong>1,000만 회 이상</strong></li>
+              <li>프로모션 기간 내 활성 사용자(DAU): <strong>전월 대비 5% 상승</strong></li>
+            </ul>
+          </li>
+          <li style="margin-top: 8px;"><strong>예산 배분 계획:</strong>
+            <ul class="sub-bullet">
+              <li>상금 및 현물 보상: 총 500만 원 상당</li>
+              <li>인게임 재화: 장부상 마케팅 예산 내 차감 (별의 소리 160개 기본 발급분)</li>
+              <li>매체 및 마케팅 집행비: 인플루언서 시딩 및 숏폼 부스팅 광고비 별도 편성</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
